@@ -68,19 +68,22 @@ export const Header: React.FC = () => {
           aria-expanded={isUserMenuOpen}
         >
           <span
-            className="w-7 h-7 rounded-full text-white text-xs font-bold flex items-center justify-center shrink-0"
-            style={{ backgroundColor: G }}
+            className="w-7 h-7 rounded-full text-white text-xs font-bold flex items-center justify-center shrink-0 bg-[#10B981]"
           >
-            AD
+            A
           </span>
-          <span className="hidden sm:inline font-medium text-stone-800">Admin Demo</span>
+          <span className="hidden sm:inline font-medium text-stone-800">Archana</span>
         </button>
 
         {isUserMenuOpen && (
           <div
             role="menu"
-            className="absolute right-0 mt-1 w-48 bg-white border border-stone-200 rounded-xl shadow-lg p-1 z-30"
+            className="absolute right-0 mt-1 w-52 bg-white border border-stone-200 rounded-xl shadow-lg p-1 z-30"
           >
+            <div className="px-3 py-2 border-b border-stone-100 mb-1">
+              <div className="font-semibold text-xs text-stone-900">Archana</div>
+              <div className="text-[11px] text-stone-500 truncate">archana@creativebuffer.com</div>
+            </div>
             {['Profile', 'Switch role', 'Help', 'Sign out'].map((item) => (
               <button
                 key={item}

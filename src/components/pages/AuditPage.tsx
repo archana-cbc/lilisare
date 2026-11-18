@@ -18,6 +18,7 @@ interface QuestionItem {
   question: string;
   answer?: string;
   isAnswered: boolean;
+
   voiceRecorded?: boolean;
 }
 
@@ -560,13 +561,13 @@ export const AuditPage: React.FC = () => {
       prev.map((n) =>
         n.id === id
           ? {
-              ...n,
-              status: 'Approved',
-              timeline: [
-                ...n.timeline,
-                { title: 'Approved by reviewer', actor: 'Maya R.', time: 'Just now' },
-              ],
-            }
+            ...n,
+            status: 'Approved',
+            timeline: [
+              ...n.timeline,
+              { title: 'Approved by reviewer', actor: 'Maya R.', time: 'Just now' },
+            ],
+          }
           : n
       )
     );
@@ -579,13 +580,13 @@ export const AuditPage: React.FC = () => {
       prev.map((n) =>
         n.id === id
           ? {
-              ...n,
-              status: 'Waiting on caregiver',
-              timeline: [
-                ...n.timeline,
-                { title: 'Questions sent to caregiver', actor: 'Maya R.', time: 'Just now' },
-              ],
-            }
+            ...n,
+            status: 'Waiting on caregiver',
+            timeline: [
+              ...n.timeline,
+              { title: 'Questions sent to caregiver', actor: 'Maya R.', time: 'Just now' },
+            ],
+          }
           : n
       )
     );
@@ -598,14 +599,14 @@ export const AuditPage: React.FC = () => {
       prev.map((n) =>
         n.id === id
           ? {
-              ...n,
-              status: 'Urgent',
-              isUrgentSafety: true,
-              timeline: [
-                ...n.timeline,
-                { title: 'Escalated to clinical supervisor', actor: 'Maya R.', time: 'Just now' },
-              ],
-            }
+            ...n,
+            status: 'Urgent',
+            isUrgentSafety: true,
+            timeline: [
+              ...n.timeline,
+              { title: 'Escalated to clinical supervisor', actor: 'Maya R.', time: 'Just now' },
+            ],
+          }
           : n
       )
     );
@@ -717,10 +718,10 @@ export const AuditPage: React.FC = () => {
             {activeTab === 'review'
               ? 'Review'
               : activeTab === 'new-note'
-              ? 'New Note'
-              : activeTab === 'quality'
-              ? 'Quality Reports'
-              : 'Rules'}
+                ? 'New Note'
+                : activeTab === 'quality'
+                  ? 'Quality Reports'
+                  : 'Rules'}
           </span>
           {activeTab === 'review' && currentNote && (
             <>
@@ -760,44 +761,40 @@ export const AuditPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setActiveTab('review')}
-              className={`h-[30px] px-3.5 rounded-[6px] text-[12px] font-semibold transition ${
-                activeTab === 'review'
+              className={`h-[30px] px-3.5 rounded-[6px] text-[12px] font-semibold transition ${activeTab === 'review'
                   ? 'bg-[var(--green-700)] text-white shadow-xs'
                   : 'text-[var(--text-muted)] hover:text-[var(--text)]'
-              }`}
+                }`}
             >
               Review
             </button>
             <button
               type="button"
               onClick={() => setActiveTab('new-note')}
-              className={`h-[30px] px-3.5 rounded-[6px] text-[12px] font-semibold transition ${
-                activeTab === 'new-note'
+              className={`h-[30px] px-3.5 rounded-[6px] text-[12px] font-semibold transition ${activeTab === 'new-note'
                   ? 'bg-[var(--green-700)] text-white shadow-xs'
                   : 'text-[var(--text-muted)] hover:text-[var(--text)]'
-              }`}
+                }`}
             >
               New Note
             </button>
             <button
               type="button"
               onClick={() => setActiveTab('quality')}
-              className={`h-[30px] px-3.5 rounded-[6px] text-[12px] font-semibold transition ${
-                activeTab === 'quality'
+              className={`h-[30px] px-3.5 rounded-[6px] text-[12px] font-semibold transition ${activeTab === 'quality'
                   ? 'bg-[var(--green-700)] text-white shadow-xs'
                   : 'text-[var(--text-muted)] hover:text-[var(--text)]'
-              }`}
+                }`}
             >
               Quality Reports
             </button>
             <button
               type="button"
               onClick={() => setActiveTab('rules')}
-              className={`h-[30px] px-3.5 rounded-[6px] text-[12px] font-semibold transition ${
-                activeTab === 'rules'
+              className={`h-[30px] px-3.5 rounded-[6px] text-[12px] font-semibold transition ${activeTab === 'rules'
                   ? 'bg-[var(--green-700)] text-white shadow-xs'
                   : 'text-[var(--text-muted)] hover:text-[var(--text)]'
-              }`}
+                }`}
             >
               Rules
             </button>
@@ -885,11 +882,10 @@ export const AuditPage: React.FC = () => {
                     <div
                       key={item.id}
                       onClick={() => setSelectedNoteId(item.id)}
-                      className={`p-3.5 cursor-pointer transition ${
-                        isSelected
+                      className={`p-3.5 cursor-pointer transition ${isSelected
                           ? 'bg-[var(--green-100)]/70 border-l-4 border-l-[var(--green-700)]'
                           : 'hover:bg-[#F0F2ED]/60 bg-[var(--card)]'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between gap-1 mb-1">
                         <span className="text-[14px] font-semibold text-[var(--text)] truncate">
@@ -897,15 +893,14 @@ export const AuditPage: React.FC = () => {
                         </span>
                         {/* One Status Chip */}
                         <span
-                          className={`text-[11px] font-semibold px-2 py-0.5 rounded-[6px] shrink-0 ${
-                            item.status === 'Urgent'
+                          className={`text-[11px] font-semibold px-2 py-0.5 rounded-[6px] shrink-0 ${item.status === 'Urgent'
                               ? 'bg-red-100 text-red-900 border border-red-200'
                               : item.status === 'Needs fix'
-                              ? 'bg-amber-100 text-amber-900 border border-amber-200'
-                              : item.status === 'Waiting on caregiver'
-                              ? 'bg-blue-100 text-blue-900 border border-blue-200'
-                              : 'bg-emerald-100 text-emerald-900 border border-emerald-200'
-                          }`}
+                                ? 'bg-amber-100 text-amber-900 border border-amber-200'
+                                : item.status === 'Waiting on caregiver'
+                                  ? 'bg-blue-100 text-blue-900 border border-blue-200'
+                                  : 'bg-emerald-100 text-emerald-900 border border-emerald-200'
+                            }`}
                         >
                           {item.status}
                         </span>
@@ -1074,11 +1069,10 @@ export const AuditPage: React.FC = () => {
                           <mark
                             key={i}
                             onClick={() => setActiveFlagPopover(matched)}
-                            className={`cursor-pointer px-1 py-0.5 rounded font-medium ${
-                              matched.isUrgentSafety
+                            className={`cursor-pointer px-1 py-0.5 rounded font-medium ${matched.isUrgentSafety
                                 ? 'bg-red-200 text-red-950 ring-1 ring-red-400'
                                 : 'bg-amber-200 text-amber-950'
-                            }`}
+                              }`}
                             title="Click to view plain-language explanation"
                           >
                             {chunk}
@@ -1180,12 +1174,12 @@ export const AuditPage: React.FC = () => {
                                         prev.map((n) =>
                                           n.id === currentNote.id
                                             ? {
-                                                ...n,
-                                                questions: n.questions.map((item) =>
-                                                  item.id === q.id ? { ...item, isAnswered: true, answer: ans } : item
-                                                ),
-                                                suggestedText: n.suggestedText.replace('[add exact time]', ans),
-                                              }
+                                              ...n,
+                                              questions: n.questions.map((item) =>
+                                                item.id === q.id ? { ...item, isAnswered: true, answer: ans } : item
+                                              ),
+                                              suggestedText: n.suggestedText.replace('[add exact time]', ans),
+                                            }
                                             : n
                                         )
                                       );
@@ -1206,11 +1200,11 @@ export const AuditPage: React.FC = () => {
                                         prev.map((n) =>
                                           n.id === currentNote.id
                                             ? {
-                                                ...n,
-                                                questions: n.questions.map((item) =>
-                                                  item.id === q.id ? { ...item, isAnswered: true, answer: ans } : item
-                                                ),
-                                              }
+                                              ...n,
+                                              questions: n.questions.map((item) =>
+                                                item.id === q.id ? { ...item, isAnswered: true, answer: ans } : item
+                                              ),
+                                            }
                                             : n
                                         )
                                       );
@@ -1371,14 +1365,12 @@ export const AuditPage: React.FC = () => {
               ].map((s) => (
                 <div key={s.num} className="flex flex-col items-center">
                   <div
-                    className={`w-full h-1.5 rounded-full mb-1.5 transition ${
-                      wizardStep >= s.num ? 'bg-[var(--green-700)]' : 'bg-[var(--border)]'
-                    }`}
+                    className={`w-full h-1.5 rounded-full mb-1.5 transition ${wizardStep >= s.num ? 'bg-[var(--green-700)]' : 'bg-[var(--border)]'
+                      }`}
                   />
                   <span
-                    className={`text-[12px] truncate w-full ${
-                      wizardStep === s.num ? 'font-bold text-[var(--text)]' : 'text-[var(--text-muted)]'
-                    }`}
+                    className={`text-[12px] truncate w-full ${wizardStep === s.num ? 'font-bold text-[var(--text)]' : 'text-[var(--text-muted)]'
+                      }`}
                   >
                     {s.label}
                   </span>
@@ -1471,11 +1463,10 @@ export const AuditPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setInputMode('speak')}
-                  className={`p-4 rounded-[12px] border text-left transition ${
-                    inputMode === 'speak'
+                  className={`p-4 rounded-[12px] border text-left transition ${inputMode === 'speak'
                       ? 'border-[var(--green-700)] bg-[var(--green-100)] ring-1 ring-[var(--green-700)]'
                       : 'border-[var(--border)] bg-[var(--card)] hover:bg-[#F0F2ED]'
-                  }`}
+                    }`}
                 >
                   <span className="text-2xl block mb-1">🎙️</span>
                   <span className="font-semibold text-[14px] text-[var(--text)] block">Speak</span>
@@ -1485,11 +1476,10 @@ export const AuditPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setInputMode('upload')}
-                  className={`p-4 rounded-[12px] border text-left transition ${
-                    inputMode === 'upload'
+                  className={`p-4 rounded-[12px] border text-left transition ${inputMode === 'upload'
                       ? 'border-[var(--green-700)] bg-[var(--green-100)] ring-1 ring-[var(--green-700)]'
                       : 'border-[var(--border)] bg-[var(--card)] hover:bg-[#F0F2ED]'
-                  }`}
+                    }`}
                 >
                   <span className="text-2xl block mb-1">📁</span>
                   <span className="font-semibold text-[14px] text-[var(--text)] block">Upload voice note</span>
@@ -1499,11 +1489,10 @@ export const AuditPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setInputMode('type')}
-                  className={`p-4 rounded-[12px] border text-left transition ${
-                    inputMode === 'type'
+                  className={`p-4 rounded-[12px] border text-left transition ${inputMode === 'type'
                       ? 'border-[var(--green-700)] bg-[var(--green-100)] ring-1 ring-[var(--green-700)]'
                       : 'border-[var(--border)] bg-[var(--card)] hover:bg-[#F0F2ED]'
-                  }`}
+                    }`}
                 >
                   <span className="text-2xl block mb-1">⌨️</span>
                   <span className="font-semibold text-[14px] text-[var(--text)] block">Paste or type</span>
@@ -1548,9 +1537,8 @@ export const AuditPage: React.FC = () => {
                           showToast('Dictation captured');
                         }
                       }}
-                      className={`min-h-[36px] px-4 rounded-[8px] font-semibold text-[12px] transition ${
-                        isRecording ? 'bg-red-600 text-white' : 'bg-[var(--green-700)] text-white'
-                      }`}
+                      className={`min-h-[36px] px-4 rounded-[8px] font-semibold text-[12px] transition ${isRecording ? 'bg-red-600 text-white' : 'bg-[var(--green-700)] text-white'
+                        }`}
                     >
                       {isRecording ? `Stop Recording (${recordSeconds}s)` : 'Start Speaking 🎙️'}
                     </button>
@@ -1930,9 +1918,8 @@ export const AuditPage: React.FC = () => {
                           setProgramRequirements({ ...programRequirements, [prog]: !req });
                           showToast(`${prog} updated to ${!req ? 'Mandatory' : 'Optional'}`);
                         }}
-                        className={`px-2 py-0.5 rounded text-[11px] font-bold ${
-                          req ? 'bg-[var(--green-700)] text-white' : 'bg-stone-300 text-stone-700'
-                        }`}
+                        className={`px-2 py-0.5 rounded text-[11px] font-bold ${req ? 'bg-[var(--green-700)] text-white' : 'bg-stone-300 text-stone-700'
+                          }`}
                       >
                         {req ? 'Mandatory' : 'Optional'}
                       </button>
@@ -1992,9 +1979,8 @@ export const AuditPage: React.FC = () => {
                     </td>
                     <td className="py-3 px-4">
                       <span
-                        className={`px-2 py-0.5 rounded font-semibold text-[11px] ${
-                          rule.severity === 'High' ? 'bg-red-100 text-red-900' : 'bg-amber-100 text-amber-900'
-                        }`}
+                        className={`px-2 py-0.5 rounded font-semibold text-[11px] ${rule.severity === 'High' ? 'bg-red-100 text-red-900' : 'bg-amber-100 text-amber-900'
+                          }`}
                       >
                         {rule.severity}
                       </span>
@@ -2066,11 +2052,10 @@ export const AuditPage: React.FC = () => {
                   key={t.id}
                   type="button"
                   onClick={() => setDetailsTab(t.id as typeof detailsTab)}
-                  className={`py-2.5 transition border-b-2 ${
-                    detailsTab === t.id
+                  className={`py-2.5 transition border-b-2 ${detailsTab === t.id
                       ? 'border-[var(--green-700)] text-[var(--green-700)]'
                       : 'border-transparent text-[var(--text-muted)] hover:text-[var(--text)]'
-                  }`}
+                    }`}
                 >
                   {t.label}
                 </button>
@@ -2200,11 +2185,10 @@ export const AuditPage: React.FC = () => {
               {assistantMessages.map((m, idx) => (
                 <div
                   key={idx}
-                  className={`p-2.5 rounded-[8px] leading-relaxed ${
-                    m.sender === 'user'
+                  className={`p-2.5 rounded-[8px] leading-relaxed ${m.sender === 'user'
                       ? 'bg-[var(--green-700)] text-white ml-6 text-right'
                       : 'bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] mr-4 space-y-1.5'
-                  }`}
+                    }`}
                 >
                   <div>{m.text}</div>
                   {m.source && (

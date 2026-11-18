@@ -1089,29 +1089,50 @@ export const MODS = [
   'Users and Roles',
 ];
 
+export interface NavItem {
+  id: string;
+  label: string;
+  badge?: number;
+  icon?: string;
+}
+
 export interface NavGroup {
+  id: string;
   name: string;
-  items: Array<{
-    id: string;
-    label: string;
-    badge?: number;
-  }>;
+  icon: string;
+  isExpandable: boolean;
+  directId?: string;
+  items: NavItem[];
 }
 
 export const NAV: NavGroup[] = [
   {
-    name: 'WORK',
+    id: 'today',
+    name: 'Today',
+    icon: 'home',
+    isExpandable: false,
+    directId: 'today',
     items: [
-      { id: 'today', label: 'Today' },
+      { id: 'today', label: 'Today', icon: 'home' },
+    ],
+  },
+  {
+    id: 'intake-menu',
+    name: 'Intake & Onboarding',
+    icon: 'inbox',
+    isExpandable: true,
+    items: [
       { id: 'intake', label: 'Client Intake' },
       { id: 'cg-intake', label: 'Caregiver Intake' },
       { id: 'onboarding', label: 'Onboarding' },
-      { id: 'audit', label: 'Care Notes', badge: 26 },
       { id: 'emails', label: 'CA Emails', badge: 7 },
     ],
   },
   {
-    name: 'PEOPLE',
+    id: 'people-menu',
+    name: 'People',
+    icon: 'users',
+    isExpandable: true,
     items: [
       { id: 'clients', label: 'Clients' },
       { id: 'caregivers', label: 'Caregivers' },
@@ -1119,14 +1140,21 @@ export const NAV: NavGroup[] = [
     ],
   },
   {
-    name: 'SCHEDULE',
+    id: 'care-menu',
+    name: 'Care Operations',
+    icon: 'pulse',
+    isExpandable: true,
     items: [
+      { id: 'audit', label: 'Care Notes', badge: 26 },
       { id: 'scheduling', label: 'Scheduling and EVV' },
       { id: 'compliance', label: 'Compliance' },
     ],
   },
   {
-    name: 'BUSINESS',
+    id: 'finance-menu',
+    name: 'Finance & Billing',
+    icon: 'chart',
+    isExpandable: true,
     items: [
       { id: 'billing', label: 'Billing' },
       { id: 'profit', label: 'Client Profitability' },
@@ -1134,7 +1162,10 @@ export const NAV: NavGroup[] = [
     ],
   },
   {
-    name: 'SYSTEM',
+    id: 'system-menu',
+    name: 'System & Admin',
+    icon: 'settings',
+    isExpandable: true,
     items: [
       { id: 'rules', label: 'Automation Rules' },
       { id: 'systems', label: 'Connected Systems' },
